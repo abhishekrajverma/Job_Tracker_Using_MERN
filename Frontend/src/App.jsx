@@ -5,6 +5,8 @@ import Login from './components/login';
 import Header from './components/header';
 import Footer from './components/footer';
 import Home from './components/home';
+import Body from './components/content';
+import Hurry from './components/hurry';
 
 // Higher-order component for routes with Header and Footer
 const AuthRoute = ({ element: Element }) => (
@@ -23,6 +25,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<AuthRoute element={<Home />} />} />
+        <Route path="/body" element={<AuthRoute element={<Body />} />} />
+        <Route path="/hurry" element={<AuthRoute element={<Hurry />} />} /> 
       </Routes>
     </Router>
   );

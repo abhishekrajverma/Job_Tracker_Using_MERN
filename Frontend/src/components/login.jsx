@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-
 import '../assets/css/login.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
+    const navigate = useNavigate(); // Initialize useNavigate
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -15,7 +18,29 @@ function Login() {
         setPassword(e.target.value);
     };
 
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post('http://localhost:8000/users/sign', {
+                email,
+                password,
+            });
+            console.log(response.data);
+            if (response.status === 200) {
+                // Successful login, handle the result accordingly
+                console.log('Login successful:');
+                navigate('/hurry'); // Redirect to the home page on successful login
+            } else if (response.status === 401){
+                // Incorrect username or password, handle the result accordingly
+                console.log('Incorrect username or password. Please try again.');
+            }
+        } catch (error) {
+            console.error('An error occurred during login:', error);
+        }
+    };
+
     const handleSubmit = (e) => {
+        console.log('Email:', email);
+        console.log('Password:', password);
         e.preventDefault();
 
         // Basic validation
@@ -23,13 +48,8 @@ function Login() {
             setError('Please fill in all fields.');
             return;
         }
-
-        // Add your login logic here using the email and password
-
-        // Clear the form and error message
-        setEmail('');
-        setPassword('');
-        setError('');
+        // Call your backend authentication function
+        handleLogin();
     };
 
     return (
@@ -73,11 +93,12 @@ function Login() {
                             <a className="text-blue-500" href="#">Forgot password?</a>
                         </div>
                         <div className="mb-4">
-                            <input
-                                className="w-full bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer"
+                            <button
+                                className="w-full bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer disabled:opacity-50"
                                 type="submit"
-                                value="Login"
-                            />
+                            >
+                                Login
+                            </button>
                         </div>
                         <div className="text-gray-600">
                             Not a member? <a className="text-blue-500" href="/signup">Sign up now</a>

@@ -1,6 +1,11 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
+
+module.exports.abhi = (req, res) => {
+    return res.send('<h1>Abhishek</h1>'); //sending response
+}
+
 module.exports.create = async (req, res) => {
     try {
         //Check if the email is already in use
@@ -26,7 +31,12 @@ module.exports.create = async (req, res) => {
     }
     
 };
-module.exports.login = async (req, res) => {
-    
-res.send('Login');
+
+module.exports.createSession = (req, res) => {
+    return res.status(200).json({ message: 'Sign in successful'});
+};
+
+// Login failure route
+module.exports.loginFailure = (req, res) => {
+    return res.status(401).json({ message: 'Invalid username/password' });
 };
