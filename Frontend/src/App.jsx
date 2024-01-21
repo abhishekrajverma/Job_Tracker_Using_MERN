@@ -1,34 +1,26 @@
+// Import necessary components and modules
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Signup from './components/signup';
-import Login from './components/login';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
+import Home from './pages/home';
+import Signup from './pages/signup';
+import Login from './pages/login';
+import About from './pages/about';
 import Header from './components/header';
-import Footer from './components/footer';
-import Home from './components/home';
-import Body from './components/content';
-import Hurry from './components/hurry';
 
-// Higher-order component for routes with Header and Footer
-const AuthRoute = ({ element: Element }) => (
-  <>
-    <Header />
-    <Home />
-    <Footer />
-  </>
-);
+
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Define your routes here */}
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<AuthRoute element={<Home />} />} />
-        <Route path="/body" element={<AuthRoute element={<Body />} />} />
-        <Route path="/hurry" element={<AuthRoute element={<Hurry />} />} /> 
-      </Routes>
-    </Router>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sign-up" element={<Signup />} />
+          <Route path="/sign-in" element={<Login />} />
+          <Route path="/about" element={<About />} />
+
+        </Routes>
+      </BrowserRouter>
   );
 }
 

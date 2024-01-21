@@ -28,6 +28,7 @@ function Login() {
             if (response.status === 200) {
                 // Successful login, handle the result accordingly
                 console.log('Login successful:');
+                alert('Login successful')
                 navigate('/hurry'); // Redirect to the home page on successful login
             } else if (response.status === 401){
                 // Incorrect username or password, handle the result accordingly

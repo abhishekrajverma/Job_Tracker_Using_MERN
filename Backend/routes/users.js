@@ -4,17 +4,20 @@ const passport = require('passport');
 const { validateUserCreation,handleValidationErrors } = require('../middleware/validationMiddleware');
 
 
-const userController = require('../controllers/user_controllers');
+
+const authController = require('../controllers/auth.controller.js');
 
 
-router.post('/creating',validateUserCreation,handleValidationErrors, userController.create);
+router.post('/creating',validateUserCreation,handleValidationErrors, authController.create);
 
 // use passport as a middleware to authenticate
 router.post("/sign", passport.authenticate(
     'local',
     { failureRedirect: '/login-failure' }
-), userController.createSession)
-router.get('/abhi', userController.abhi);
-router.get('/login-failure', userController.loginFailure);
+), authController.createSession)
+
+router.get('/login-failure', authController.loginFailure);
+
+//router.get('/sign-out', authController.destroySession);
 
 module.exports = router;    //exporting router to use it in server.js

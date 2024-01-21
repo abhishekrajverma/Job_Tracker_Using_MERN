@@ -1,10 +1,6 @@
-const User = require('../models/user');
+const User = require('../models/user.model.js');
 const bcrypt = require('bcrypt');
 
-
-module.exports.abhi = (req, res) => {
-    return res.send('<h1>Abhishek</h1>'); //sending response
-}
 
 module.exports.create = async (req, res) => {
     try {
