@@ -102,7 +102,7 @@ function Login() {
                             </button>
                         </div>
                         <div className="text-gray-600">
-                            Not a member? <a className="text-blue-500" href="/signup">Sign up now</a>
+                            Not a member? <a className="text-blue-500" href="/sign-up">Sign up now</a>
                         </div>
                     </form>
                 </div>
