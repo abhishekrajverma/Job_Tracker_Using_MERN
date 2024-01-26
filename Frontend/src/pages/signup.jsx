@@ -40,7 +40,7 @@ export default function Signup() {
         try {
             setLoading(true);
             const response = await axios.post(
-                "http://localhost:8000/auth/creating",
+                "/api/auth/creating",
                 {
                     name: formData.name,
                     email: formData.email,

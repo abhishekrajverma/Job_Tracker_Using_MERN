@@ -1,6 +1,5 @@
 const User = require("../models/user.model.js");
 const bcrypt = require("bcrypt");
-const { errorHandler } = require('../utils/error.js');
 const jwt = require('jsonwebtoken');    //importing jsonwebtoken module
 
 module.exports.create = async (req, res) => {
@@ -31,13 +30,13 @@ module.exports.signIn = async (req, res, next) => {
     const { email, password } = req.body;
     try {
         const existingUser = await User.findOne({ email });
-        if (!existingUser) return next(errorHandler(401, { message: "user not found" }));
+        if (!existingUser) return res.status(404).json({ message: "User not found" });
         const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
-        if (!isPasswordCorrect) return next(errorHandler(401, { message: "Wrong Password" }));
+        if (!isPasswordCorrect) return res.status(401).json({ message: "Wrong Password" });
         const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET);
         // remove password from user object
         const { password: userPassword, ...userWithoutPassword } = existingUser.toObject(); //toObject() converts mongoose document to js object
-        return res.cookie('access_token', token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 })
+        return res.cookie('access_token', token, { httpOnly: true, maxAge: 1024 * 60 * 60 * 24 * 3})
         .status(200).json({ message: "Sign in successful",user: userWithoutPassword});
     }
     catch (error) {
