@@ -1,7 +1,9 @@
 const User = require("../models/user.model.js");
 const bcrypt = require("bcrypt");
+const { errorHandler } = require('../utils/error.js');
+const jwt = require('jsonwebtoken');    //importing jsonwebtoken module
 
-module.exports.create = async (req, res, next) => {
+module.exports.create = async (req, res) => {
     try {
         //Check if the email is already in use
         const existingUser = await User.findOne({ email: req.body.email });
@@ -17,18 +19,29 @@ module.exports.create = async (req, res, next) => {
             password: hashedPassword,
         });
         // Return a success response
-        res.status(201).json({ message: "user created successfully", user : newUser });
+        res.status(201).json({ message: "user created successfully", user: newUser });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Internal server error", error : error.message });
+        res.status(500).json({ message: "Internal server error", error: error.message });
     }
 };
 
-module.exports.createSession = (req, res) => {
-    return res.status(200).json({ message: "Sign in successful" });
-};
-
-// Login failure route
-module.exports.loginFailure = (req, res) => {
-    return res.status(401).json({ message: "Invalid username/password" });
+// sign-in controller
+module.exports.signIn = async (req, res, next) => {
+    const { email, password } = req.body;
+    try {
+        const existingUser = await User.findOne({ email });
+        if (!existingUser) return next(errorHandler(401, { message: "user not found" }));
+        const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
+        if (!isPasswordCorrect) return next(errorHandler(401, { message: "Wrong Password" }));
+        const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET);
+        // remove password from user object
+        const { password: userPassword, ...userWithoutPassword } = existingUser.toObject(); //toObject() converts mongoose document to js object
+        return res.cookie('access_token', token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 })
+        .status(200).json({ message: "Sign in successful",user: userWithoutPassword});
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal server error", error: error.message });
+    }
 };

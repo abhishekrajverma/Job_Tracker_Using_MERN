@@ -40,7 +40,7 @@ export default function Signup() {
         try {
             setLoading(true);
             const response = await axios.post(
-                "http://localhost:8000/users/creating",
+                "http://localhost:8000/auth/creating",
                 {
                     name: formData.name,
                     email: formData.email,
@@ -56,7 +56,6 @@ export default function Signup() {
             // Successful sign up, handle the result accordingly
             if (response.status === 201) {
                 console.log("Sign up successful:", response.data);
-                setLoading(true);
                 setError(null);
                 navigate("/sign-in");
             }

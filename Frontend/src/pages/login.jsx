@@ -20,7 +20,7 @@ function Login() {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/users/sign', {
+            const response = await axios.post('http://localhost:8000/users/sign-in', {
                 email,
                 password,
             });
@@ -29,7 +29,7 @@ function Login() {
                 // Successful login, handle the result accordingly
                 console.log('Login successful:');
                 alert('Login successful')
-                navigate('/hurry'); // Redirect to the home page on successful login
+                navigate('/'); // Redirect to the home page on successful login
             } else if (response.status === 401){
                 // Incorrect username or password, handle the result accordingly
                 console.log('Incorrect username or password. Please try again.');
