@@ -1,13 +1,19 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    signInStart,
+    signInSuccess,
+    signInFailure,
+} from '../Redux/user/userSlice'
 
 
 export default function SignIn() {
     const [formData, setFormData] = useState({});
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const { loading, error } = useSelector((state) => state.user)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         setFormData({
@@ -19,13 +25,13 @@ export default function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            setLoading(true);
+            dispatch(signInStart())
             const response = await axios.post(
                 "/api/auth/sign-in",
                 {
                     email: formData.email,
                     password: formData.password,
-                    
+
                 },
                 {
                     headers: {
@@ -36,13 +42,12 @@ export default function SignIn() {
             // Successful sign up, handle the result accordingly
             if (response.status === 200) {
                 console.log("Sign up successful:", response.data);
-                setError(null);
+                dispatch(signInSuccess(response.data))
                 navigate("/");
             }
         } catch (err) {
-            setLoading(false);
             if (err.response) {
-                setError(err.response.data.message);
+                dispatch(signInFailure(err.response.data.message))
                 return;
             }
         }
@@ -82,7 +87,6 @@ export default function SignIn() {
                 </Link>
             </div>
             {error && <div className="text-red-500 mt-5">{error}</div>}
-
         </div>
     );
 }

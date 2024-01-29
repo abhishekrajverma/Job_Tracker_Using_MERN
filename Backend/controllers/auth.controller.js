@@ -26,7 +26,7 @@ module.exports.create = async (req, res) => {
 };
 
 // sign-in controller
-module.exports.signIn = async (req, res, next) => {
+module.exports.signIn = async (req, res) => {
     const { email, password } = req.body;
     try {
         const existingUser = await User.findOne({ email });

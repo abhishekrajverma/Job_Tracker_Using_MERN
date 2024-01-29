@@ -11,8 +11,6 @@ export default function Signup() {
     const [confirmPasswordTouched, setConfirmPasswordTouched] = useState(false);
     const navigate = useNavigate();
 
-
-
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -124,7 +122,6 @@ export default function Signup() {
                 </Link>
             </div>
             {error && <div className="text-red-500 mt-5">{error}</div>}
-
         </div>
     );
 }
