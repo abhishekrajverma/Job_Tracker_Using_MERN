@@ -1,17 +1,18 @@
 import { FaSearch } from 'react-icons/fa';
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const Header = () => {
+export default function Header() {
+    const { currentUser } = useSelector((state) => state.user);
+
     return (
         <header className='bg-slate-200 shadow-md'>
             <nav className="flex items-center justify-between max-w-6xl mx-auto p-3">
                 <Link to='/'>
-                <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-                    <span className='text-slate-500'>Abhishek</span>
-                    <span className='text-slate-700'>Raj</span>
-                </h1>
+                    <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
+                        <span className='text-slate-500'>Abhishek</span>
+                        <span className='text-slate-700'>Raj</span>
+                    </h1>
                 </Link>
                 <form className='bg-slate-100 p-3 rounded-lg flex items-center'>
                     <input
@@ -24,18 +25,22 @@ const Header = () => {
                 </form>
                 <ul className="flex gap-4">
                     <Link to='/'>
-                    <li className='hidden sm:inline text-slate-700 hover:underline'> Home</li>
+                        <li className='hidden sm:inline text-slate-700 hover:underline'> Home</li>
                     </Link>
                     <Link to='/about'>
-                    <li className='hidden sm:inline text-slate-700 hover:underline'> About</li>
+                        <li className='hidden sm:inline text-slate-700 hover:underline'> About</li>
                     </Link>
-                    <Link to='/Sign-in'>
-                    <li className='sm:inline text-slate-700 hover:underline'>Sign in</li>
-                    </Link>
+                    {currentUser ? (
+                        <Link to='/profile'>
+                            <img className='rounded-full h-7 w-7 object-cover' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile" />
+                        </Link>
+                    ) : (
+                        <Link to='/sign-in'>
+                            <li className='hidden sm:inline text-slate-700 hover:underline'>Sign In</li>
+                        </Link>
+                    )}
                 </ul>
             </nav>
         </header>
     );
 };
-
-export default Header;

@@ -41,7 +41,6 @@ export default function SignIn() {
             );
             // Successful sign up, handle the result accordingly
             if (response.status === 200) {
-                console.log("Sign up successful:", response.data);
                 dispatch(signInSuccess(response.data))
                 navigate("/");
             }
