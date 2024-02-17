@@ -1,9 +1,9 @@
 // Import necessary components and modules
 import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
-import Home from './pages/home';
-import Signup from './pages/signup';
-import Login from './pages/login';
-import About from './pages/about';
+import Home from './pages/Home';
+import Signup from './pages/SignUp';
+import Login from './pages/Login';
+import About from './pages/About';
 import Header from './components/header';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';

@@ -33,6 +33,7 @@ module.exports.signIn = async (req, res) => {
         if (!existingUser) return res.status(404).json({ message: "User not found" });
         const isPasswordCorrect = bcrypt.compareSync(password, existingUser.password);
         if (!isPasswordCorrect) return res.status(401).json({ message: "Wrong Password" });
+        // create a token for the user and send it as a cookie in the response header 
         const token = jwt.sign({ id: existingUser._id }, process.env.JWT_SECRET);
         // remove password from user object
         const { password: userPassword, ...userWithoutPassword } = existingUser.toObject(); //toObject() converts mongoose document to js object

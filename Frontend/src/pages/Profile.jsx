@@ -63,7 +63,7 @@ export default function Profile() {
                     hidden
                     ref={fileInput}
                 />
-                <img className='rounded-full h-27 w-27 object-cover cursor-pointer self-center mt-2'
+                <img className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2'
                     src={formData.avatar || currentUser.user.avatar}
                     alt="Profile"
                     referrerPolicy='no-referrer'

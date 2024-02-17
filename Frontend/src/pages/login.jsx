@@ -7,7 +7,7 @@ import {
     signInStart,
     signInSuccess,
     signInFailure,
-} from '../Redux/user/userSlice'
+} from '../Redux/user/userSlice.js'
 
 
 export default function SignIn() {
@@ -78,7 +78,7 @@ export default function SignIn() {
                 >
                     {loading ? "Loading..." : "Sign In"}
                 </button>
-                <OAuth />
+                <OAuth /> 
             </form>
             <div className="flex gap-2 mt-5">
                 <p>Not an account?</p>

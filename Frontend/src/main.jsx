@@ -5,6 +5,7 @@ import './index.css'
 import { store, persistor } from './Redux/store.js'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
+import 'semantic-ui-css/semantic.min.css'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
