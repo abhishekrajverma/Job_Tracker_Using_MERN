@@ -1,8 +1,8 @@
-const Express = require("express");
-const bodyParserMiddleware = require("./middleware/bodyParserMiddleware.js");
-const cookieParserMiddleware = require("./middleware/cookieParserMiddleware.js");
-const db = require("./config/mongoose");
-const routes = require("./routes");
+import Express from "express";
+import bodyParserMiddleware from "./middleware/bodyParserMiddleware.js";
+import cookieParserMiddleware from "./middleware/cookieParserMiddleware.js";
+import db from "./config/mongoose.js";
+import routes from "./routes/index.js";
 
 const port = process.env.PORT
 const app = Express();
@@ -11,10 +11,8 @@ const app = Express();
 bodyParserMiddleware(app);
 cookieParserMiddleware(app);
 
-
-
-
 // Database setup
+
 
 // Use express router
 app.use("/", routes);

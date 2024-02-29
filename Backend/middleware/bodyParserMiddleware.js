@@ -1,7 +1,11 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
 
-module.exports = function (app) {
+
+// Middleware to parse the request body
+const bodyParserMiddleware = (app) => {
+    app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(express.json());
 };
+
+export default bodyParserMiddleware;

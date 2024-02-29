@@ -1,5 +1,8 @@
-const cookieParser = require('cookie-parser');
+import cookieParser from 'cookie-parser';
 
-module.exports = function (app) {
+// This middleware is used to parse the cookies attached to the client request object.
+const cookieParserMiddleware = (app) => {
     app.use(cookieParser());
 };
+
+export default cookieParserMiddleware;

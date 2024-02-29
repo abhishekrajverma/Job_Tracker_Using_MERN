@@ -1,8 +1,9 @@
-const User = require("../models/user.model.js");
-const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');    //importing jsonwebtoken module
+//const User = require("../models/user.model.js");
+import User from "../models/user.model.js";
+import bcrypt from 'bcrypt';    //importing bcrypt module
+import jwt from 'jsonwebtoken';    //importing jsonwebtoken module
 
-module.exports.create = async (req, res) => {
+const create = async (req, res) => {
     try {
         //Check if the email is already in use
         const existingUser = await User.findOne({ email: req.body.email });
@@ -26,7 +27,7 @@ module.exports.create = async (req, res) => {
 };
 
 // sign-in controller
-module.exports.signIn = async (req, res) => {
+const signIn = async (req, res) => {
     const { email, password } = req.body;
     try {
         const existingUser = await User.findOne({ email });
@@ -47,7 +48,7 @@ module.exports.signIn = async (req, res) => {
 };
 
 // google sign-in controller
-module.exports.googleSignIn = async (req, res) => {  
+const googleSignIn = async (req, res) => {  
     try {
         const user = await User.findOne({ email: req.body.email });
         if(user){
@@ -78,3 +79,7 @@ module.exports.googleSignIn = async (req, res) => {
         res.status(500).json({ message: "Internal server error", error: error.message });
     }
 };
+
+// exporting the controllers
+
+export default { create, signIn, googleSignIn };

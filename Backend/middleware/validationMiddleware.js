@@ -1,5 +1,5 @@
 // Used to validate user input
-const { validationResult, check } = require('express-validator');
+import { validationResult, check } from 'express-validator';
 
 const validateUserCreation = [
     check('name').notEmpty().withMessage('Name is required'),
@@ -24,7 +24,6 @@ const handleValidationErrors = (req, res, next) => {
     next();
 };
 
-module.exports = {
-    validateUserCreation,
-    handleValidationErrors,
-};
+// Used to validate user login
+
+export { validateUserCreation, handleValidationErrors };

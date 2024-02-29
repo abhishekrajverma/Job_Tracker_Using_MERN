@@ -1,10 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();    
-const authController = require('../controllers/auth.controller.js');
-const { validateUserCreation,handleValidationErrors } = require('../middleware/validationMiddleware');
+import authController from '../controllers/auth.controller.js';
+import  { validateUserCreation,handleValidationErrors } from '../middleware/validationMiddleware.js';
 
 router.post('/creating',validateUserCreation,handleValidationErrors, authController.create);
 router.post('/sign-in', authController.signIn);
 router.post('/google', authController.googleSignIn);
 
-module.exports = router;    //exporting router to use it in server.js
+  //exporting router to use it in server.js
+export default router;
