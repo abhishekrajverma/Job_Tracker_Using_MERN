@@ -1,10 +1,13 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-//const userController = require('../controllers/user.controller.js');
-//const verifyUser = require('../utils/VerifyUser.js')
+import userController from '../controllers/user.controller.js';
+import verifyUser from '../utils/VerifyUser.js';
 
 
 
-//router.post('/update/:id', verifyUser, userController.updateUser);
-//module.exports = router;    //exporting router to use it in server.js
+router.post('/update/:id', verifyUser, userController.updateUser);
+
+//exporting router to use it in server.js
+
+export default router;

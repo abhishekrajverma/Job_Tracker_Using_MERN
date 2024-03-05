@@ -1,11 +1,14 @@
 import express from 'express';
 const router = express.Router();
 import authRoute from './auth.route.js';
+import userRoute from './users.route.js';
 
 //for any further routes, access from here
 //syntax- router.use('/routerName', './routerFile')
-//router.use('/users', require('./users.route.js'));
+
 router.use('/auth', authRoute);
+router.use('/users', userRoute);
+
 
 console.log("hello from routes");
 

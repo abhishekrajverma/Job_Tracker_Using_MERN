@@ -52,6 +52,7 @@ const googleSignIn = async (req, res) => {
     try {
         const user = await User.findOne({ email: req.body.email });
         if(user){
+            // create a token for the user and send it as a cookie in the response header   
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
             // remove password from user object
             const { password: userPassword, ...userWithoutPassword } = user.toObject(); //toObject() converts mongoose document to js object

@@ -1,9 +1,9 @@
 import express from 'express';
 const router = express.Router();    
 import authController from '../controllers/auth.controller.js';
-import  { validateUserCreation,handleValidationErrors } from '../middleware/validationMiddleware.js';
+import  { validateUserCreation, handleValidationErrors } from '../middleware/validationMiddleware.js';
 
-router.post('/creating',validateUserCreation,handleValidationErrors, authController.create);
+router.post('/creating',validateUserCreation, handleValidationErrors, authController.create);
 router.post('/sign-in', authController.signIn);
 router.post('/google', authController.googleSignIn);
 

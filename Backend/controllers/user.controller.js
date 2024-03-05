@@ -1,16 +1,33 @@
-const User = require('../models/user.model.js');
+import User from "../models/user.model.js";
+import bcrypt from 'bcrypt';
 
-module.exports.updateUser = async (req, res) => {    
+const updateUser = async (req, res) => {
+    if(req.user.id !== req.params.id) return res.status(401).json({message: "You can update only your account"});
     try {
-        const user = await User.findByIdAndUpdate(req.params.id , req.body  , {new: true}); //new: true returns the updated user
-        if (!user) {
-            return res.status(404).json({ message: "User not found" });
+        //if the user wants to update the password
+        if(req.body.password){
+            req.body.password = bcrypt.hashSync(req.body.password, 10);
         }
-        return res.status(200).json({ message: "User updated     successfully", user: user });
-    }
-    catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Internal server error", error: error.message });
+        //update the user account with the new data 
+        const updatedUser = await User.findByIdAndUpdate(req.params.id, {
+            // $set is a mongoose method to update the user data 
+            $set: {
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password,
+                avatar: req.body.photo,
+            }
+        }, {new: true}); //new: true will return the updated user
+
+        // remove password from user object 
+        const { password, ...user } = updatedUser.toObject(); //toObject() converts mongoose document to js object 
+        res.status(200).json({message: "Account has been updated" , user});
+    } catch (error) {
+        res.status(500).json({message: "Internal server error", error: error.message});
     }
 }
+
+// export the controllers
+
+export default { updateUser };
 

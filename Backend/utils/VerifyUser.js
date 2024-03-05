@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-module.exports.verifyUser = async (req, res, next) => {
+const verifyUser = async (req, res, next) => {
     try {
         const token = req.cookies.access_token;
         if (!token) return res.status(401).json({ message: 'Unauthoried' });
@@ -18,3 +18,7 @@ module.exports.verifyUser = async (req, res, next) => {
         res.status(401).json({ message: 'Auth failed' });
     }
 };
+
+// export the middleware
+
+export default verifyUser;
