@@ -33,14 +33,14 @@ The Job Tracker project is a comprehensive tool designed to help users manage th
 3. Navigate to the client directory and install client-side dependencies:
 
    ```bash
-   cd client
+   cd Frontend
    npm install
    ```
 
 4. Navigate back to the project directory and install server-side dependencies:
 
    ```bash
-   cd ..
+   cd Backend
    npm install
    ```
 
@@ -50,7 +50,7 @@ The Job Tracker project is a comprehensive tool designed to help users manage th
    npm start
    ```
 
-6. Open your web browser and visit `http://localhost:3000` to use the Job Tracker application.
+6. Open your web browser and visit `http://localhost:8080` to use the Job Tracker application.
 
 ## Usage
 - Navigate through the application to add new job listings, update application statuses, schedule interviews, and manage deadlines.
@@ -65,10 +65,7 @@ If you want to contribute to the Job Tracker project, follow these steps:
 4. Push to the branch: `git push origin feature-name`.
 5. Submit a pull request.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact
-For any inquiries or suggestions, feel free to contact us at [your-email@example.com](mailto:your-email@example.com).
+For any inquiries or suggestions, feel free to contact us at [abhishekr359@gmail.com](abhishekr359@gmail.com).
 
 Thank you for using Job Tracker! Happy job hunting!
