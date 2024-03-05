@@ -12,7 +12,7 @@ import {
 
 export default function SignIn() {
     const [formData, setFormData] = useState({});
-    const { loading, error } = useSelector((state) => state.user)
+    const { loading, error } = useSelector((state) => state.user) // get loading and error from redux store 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -24,6 +24,7 @@ export default function SignIn() {
     };
 
     const handleSubmit = async (e) => {
+        // Prevent the default form submission behavior 
         e.preventDefault();
         try {
             dispatch(signInStart())

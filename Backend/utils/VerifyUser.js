@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken';
+import { errorHandler } from '../utils/error.js';
 
 const verifyUser = async (req, res, next) => {
     try {
         const token = req.cookies.access_token;
-        if (!token) return res.status(401).json({ message: 'Unauthoried' });
+        if (!token) return next(errorHandler(401, 'Unauthorized'));
 
         // verify the token and extract the user from it 
         jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
@@ -15,7 +16,7 @@ const verifyUser = async (req, res, next) => {
         });
             
     } catch (error) {
-        res.status(401).json({ message: 'Auth failed' });
+        next(error);
     }
 };
 
