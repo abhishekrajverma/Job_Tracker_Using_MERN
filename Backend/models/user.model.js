@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 
-const { Schema } = mongoose;
+const { Schema } = mongoose; // destructure the Schema object from mongoose 
 
+// create a schema for the user model 
 const contactSchema = new Schema({
     email: {
-        type : String,
-        required : true,
-        unique : true
+        type : String, // email is a string
+        required : true, // email is required
+        unique : true // email should be unique 
     },
     password : {
         type : String,
@@ -22,7 +23,7 @@ const contactSchema = new Schema({
     },
 
 }, {
-    timestamps : true
+    timestamps : true // add timestamps to the schema
 });
 
 // To use our schema definition, we need to convert our blogSchema into a Model we can work with.

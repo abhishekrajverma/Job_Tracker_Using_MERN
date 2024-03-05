@@ -9,7 +9,7 @@ import userRoute from './users.route.js';
 router.use('/auth', authRoute);
 router.use('/users', userRoute);
 
-
+// testing the router 
 console.log("hello from routes");
 
 export default router;

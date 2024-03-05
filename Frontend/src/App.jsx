@@ -1,5 +1,5 @@
 // Import necessary components and modules
-import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Signup from './pages/SignUp';
 import Login from './pages/Login';
@@ -13,7 +13,7 @@ import Demo from './pages/demo';
 
 function App() {
   return (
-      <BrowserRouter>
+      <BrowserRouter> {/* BrowserRouter is used to wrap the routes */}
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -24,8 +24,6 @@ function App() {
           <Route element={<PrivateRoute/>}>
             <Route path="/profile" element={<Profile />} />
           </Route>
-
-
         </Routes>
       </BrowserRouter>
   );

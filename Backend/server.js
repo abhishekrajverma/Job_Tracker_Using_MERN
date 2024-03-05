@@ -18,12 +18,12 @@ app.use("/", routes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    const statusCode = err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-    return res.status(statusCode).json({
-        success: false,
-        statusCode,
-        message,
+    const statusCode = err.statusCode || 500; // if status code is not defined, set it to 500
+    const message = err.message || "Internal Server Error"; // if message is not defined, set it to "Internal Server Error"
+    return res.status(statusCode).json({ // return the status code and error message as json
+        success: false, // 
+        statusCode, // status code of the error
+        message, // error message
     });
 });
 
