@@ -21,7 +21,7 @@ The Job Tracker project is a comprehensive tool designed to help users manage th
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/job-tracker.git
+   https://github.com/abhishekrajverma/Job_Tracker_Using_MERN.git
    ```
 
 2. Navigate to the project directory:
