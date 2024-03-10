@@ -15,9 +15,6 @@ import {
     deleteUserFailure,
     deleteUserSuccess,
     deleteUserStart,
-    signOutUserFailure,
-    signOutUserSuccess,
-    signOutUserStart,
 } from '../Redux/user/userSlice.js'
 import { useDispatch } from "react-redux"; // import dispatch from react-redux to dispatch actions to redux store
 
@@ -116,24 +113,8 @@ export default function Profile() {
         }
     };
 
-    // handle sign out
-    const handleSignOut = async () => {
-        try {
-            dispatch(signOutUserStart());
-            const res = await fetch('/api/auth/sign-out');
-            const data = await res.json();
-            if (data.success === false) {
-                dispatch(signOutUserFailure(data.message));
-                return;
-            }
-            dispatch(signOutUserSuccess(data));
-        } catch (error) {
-            dispatch(signOutUserFailure(error.message));
-        }
-    };
-
     return (
-        <div className="p-3 max-w-lg mx-auto">
+        <div data-theme="lemonade" className="p-3 max-w-lg mx-auto">
             <h1 className="font-semibold text-center text-3xl my-7">Profile</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <input onChange={(e) => setFile(e.target.files[0])}
@@ -190,9 +171,9 @@ export default function Profile() {
                 />
                 <button disabled={loading}
 
-                    className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
+                    className='btn btn-success'
                 >
-                    {loading ? 'Updating...' : 'Update'}
+                    {loading ? 'Updating...' : 'UPDATE'}
                 </button>
             </form>
             <div className='flex justify-between mt-5'>
@@ -201,17 +182,20 @@ export default function Profile() {
                 >
                     Delete account
                 </span>
-                <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
-                    Sign out
-                </span>
             </div>
 
             {/* // if error is true, show error message */}
-            <p>{error && <div className='text-red-500 mt-5'>{error}</div>}</p>
+            <p>{error && <div role="alert" className="alert alert-error">
+                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>{error}</span>
+            </div>}</p>
 
             {/* // if update success is true, show success message  */}
             <p>{updateSuccess && (
-                <div className='text-green-500 mt-5'>Profile updated successfully!</div>
+                <div role="alert" className="alert alert-success">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>Profile Updated Successfully</span>
+                </div>
             )}</p>
         </div>
     )

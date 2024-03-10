@@ -7,5 +7,19 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+    "wireframe",
+    "lemonade",
+    "synthwave",
+    'cyberpunk',
+    'forest',
+    'cupcake',
+    'luxury',
+    'night',
+    'acid',
+  ],
+  },
 }
+
