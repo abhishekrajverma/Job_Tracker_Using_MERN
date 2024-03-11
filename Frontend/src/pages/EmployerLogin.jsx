@@ -2,8 +2,6 @@ import React, { useState, } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
-
-
 import EmployerHeader from "../components/EmployerHeader"
 import {
     signInStart,
@@ -67,7 +65,7 @@ function EmployerLogin() {
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold">Login now!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <p className="py-6">Join us on our journey to redefine the future of public sector and make a positive impact on the world. Explore exciting career opportunities with JobHunter and be a part of something extraordinary!</p>
 
                         {/*  if error and updateError is true then show the error message  */}
                         {error && updateError && <div role="alert" className="alert alert-error">

@@ -10,6 +10,7 @@ import Demo from './pages/demo';
 import ContactInformation from './pages/Contact';
 import EmployerLogin from './pages/EmployerLogin';
 import JobListing from './pages/JobListing';
+import EmployerSignup from './pages/EmployerSignUp';
 
 
 
@@ -27,8 +28,9 @@ function App() {
             <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="/contact" element={<ContactInformation />} />
-          <Route path="/employer" element={<EmployerLogin />} />
+          <Route path="/employer-login" element={<EmployerLogin />} />
           <Route path="/job-listing" element={<JobListing />} />
+          <Route path="/employer-sign-up" element={<EmployerSignup />} />
         </Routes>
       </BrowserRouter>
   );

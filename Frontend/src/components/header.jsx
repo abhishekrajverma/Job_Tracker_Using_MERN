@@ -29,7 +29,7 @@ export default function Header() {
                 return;
             }
             dispatch(signOutUserSuccess(data));
-            navigate('/sign-in');
+            navigate('/');
         } catch (error) {
             dispatch(signOutUserFailure(error.message));
         }
@@ -147,7 +147,7 @@ export default function Header() {
                     <div className="flex gap-4">
                         <Link to='/sign-in' className="btn btn-outline rounded-full">Sign In</Link>
                         <Link to='/sign-up' className="btn btn-outline btn-error rounded-full">Register</Link>
-                        <Link to='/employer' className="btn btn-outline btn-success rounded-full">Post A Jobs</Link>
+                        <Link to='/employer-login' className="btn btn-outline btn-success rounded-full">Post A Jobs</Link>
                     </div>
                 )}
             </div>

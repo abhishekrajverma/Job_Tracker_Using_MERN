@@ -1,8 +1,11 @@
-import React from 'react'
+import Header from "../components/header"
+
 
 function JobListing() {
   return (
-    <div>JobListing</div>
+    <div>
+      <Header />
+    </div>
   )
 }
 

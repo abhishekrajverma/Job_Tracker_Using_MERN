@@ -2,10 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import OAuth from '../components/OAuth'
-import Header from "../components/header";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
-
-export default function Signup() {
+export default function EmployerSignup() {
     const [formData, setFormData] = useState({});
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -57,7 +56,7 @@ export default function Signup() {
             if (response.status === 201) {
                 console.log("Sign up successful:", response.data);
                 setError(null);
-                navigate("/sign-in");
+                navigate("/employer-login");
             }
         } catch (err) {
             setLoading(false);
@@ -70,9 +69,9 @@ export default function Signup() {
 
     return (
         <div>
-            <Header />
         <div data-theme="synthwave">
             <div className=" p-3 max-w-lg mx-auto artboard phone-3 ">
+                <Link to='/employer-login'><h1><MdOutlineKeyboardBackspace /></h1></Link>
                 <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <label className="input input-bordered flex items-center gap-2">
@@ -137,7 +136,7 @@ export default function Signup() {
                 </form>
                 <div className="flex gap-2 mt-5">
                     <p>Have an account?</p>
-                    <Link to={"/sign-in"}>
+                    <Link to={"/employer-login"}>
                         <span className="btn btn-xs">Sign in</span>
                     </Link>
                 </div>
@@ -150,3 +149,5 @@ export default function Signup() {
         </div>
     );
 }
+
+
