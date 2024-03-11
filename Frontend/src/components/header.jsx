@@ -40,7 +40,7 @@ export default function Header() {
 
 
     return (
-        <header className="navbar bg-base-100">
+        <header data-theme="wireframe"  className="navbar bg-base-100">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -145,12 +145,13 @@ export default function Header() {
                     </div>
                 ) : (
                     <div className="flex gap-4">
-                        <Link to='/sign-in' className="btn btn-outline">Sign In</Link>
-                        <Link to='/sign-up' className="btn btn-outline btn-success">Register</Link>
-                        <Link to='/sign-in' className="btn btn-outline btn-info">Post A Jobs</Link>
+                        <Link to='/sign-in' className="btn btn-outline rounded-full">Sign In</Link>
+                        <Link to='/sign-up' className="btn btn-outline btn-error rounded-full">Register</Link>
+                        <Link to='/employer' className="btn btn-outline btn-success rounded-full">Post A Jobs</Link>
                     </div>
                 )}
             </div>
         </header>
+        
     );
 };

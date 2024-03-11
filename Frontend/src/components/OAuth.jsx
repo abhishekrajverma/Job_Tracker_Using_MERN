@@ -3,6 +3,7 @@ import app from '../firebase'
 import { useDispatch } from 'react-redux'
 import { signInSuccess } from '../Redux/user/userSlice'
 import { useNavigate } from 'react-router-dom'
+import { FcGoogle } from "react-icons/fc";
 
 export default function OAuth() {
     const dispatch = useDispatch()
@@ -37,7 +38,7 @@ export default function OAuth() {
     }
     return (
         <button onClick={handleGoogleClick} type='button'
-            className='btn btn-success uppercase'
-        >continue with google</button>
+            className='btn btn-neutral uppercase'
+        ><FcGoogle />continue with google</button>
     )
 }

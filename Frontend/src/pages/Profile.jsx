@@ -1,3 +1,4 @@
+import Header from "../components/header.jsx";
 import { useSelector } from "react-redux"
 import { useRef, useState, useEffect } from "react";
 import { AiOutlineForm } from "react-icons/ai";
@@ -119,6 +120,8 @@ export default function Profile() {
     }
 
     return (
+        <div>
+            <Header />
         <div data-theme="lemonade" className="p-3 max-w-lg mx-auto">
             <h1 className="font-semibold text-center text-3xl my-7">Profile</h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -202,6 +205,7 @@ export default function Profile() {
                     <span>Profile Updated Successfully</span>
                 </div>
             )}</p>
+        </div>
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import Header from "../components/header.jsx";
 import axios from "axios";
 import React, { useState, } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -61,6 +62,8 @@ export default function SignIn() {
     }
 
     return (
+        <div>
+            <Header />
         <div data-theme="synthwave">
             <div className="p-3 max-w-lg mx-auto artboard phone-3">
                 <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
@@ -106,6 +109,7 @@ export default function SignIn() {
                     <span>{error}</span>
                 </div>}
             </div>
+        </div>
         </div>
     );
 }

@@ -7,8 +7,9 @@ import About from './pages/About';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
 import Demo from './pages/demo';
-import Header from './components/header';
 import ContactInformation from './pages/Contact';
+import EmployerLogin from './pages/EmployerLogin';
+import JobListing from './pages/JobListing';
 
 
 
@@ -16,7 +17,6 @@ import ContactInformation from './pages/Contact';
 function App() {
   return (
       <BrowserRouter> {/* BrowserRouter is used to wrap the routes */}
-        <Header />
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/sign-up" element={<Signup />} />
@@ -27,6 +27,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="/contact" element={<ContactInformation />} />
+          <Route path="/employer" element={<EmployerLogin />} />
+          <Route path="/job-listing" element={<JobListing />} />
         </Routes>
       </BrowserRouter>
   );

@@ -1,7 +1,9 @@
-
+import Header from "../components/header";
 
 function ContactInformation() {
     return (
+        <div>
+            <Header />
         <div data-theme="halloween">
         <div className="contact-info flex flex-col min-h-screen justify-center items-center bg-gray-100 py-8">
             <h2 className="text-3xl font-bold mb-3 bg-gray-800 text-white">Contact Information</h2>
@@ -19,6 +21,7 @@ function ContactInformation() {
                     <strong>Address:</strong> 123 Main Street, City, Country
                 </li>
             </ul>
+        </div>
         </div>
         </div>
     );
