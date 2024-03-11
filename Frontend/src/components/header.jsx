@@ -146,7 +146,8 @@ export default function Header() {
                 ) : (
                     <div className="flex gap-4">
                         <Link to='/sign-in' className="btn btn-outline">Sign In</Link>
-                        <Link to='/sign-up' className="btn btn-success">Register</Link>
+                        <Link to='/sign-up' className="btn btn-outline btn-success">Register</Link>
+                        <Link to='/sign-in' className="btn btn-outline btn-info">Post A Jobs</Link>
                     </div>
                 )}
             </div>
