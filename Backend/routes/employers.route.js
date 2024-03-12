@@ -4,5 +4,8 @@ import  { validateUserCreation, handleValidationErrors } from '../middleware/val
 const router = exprees.Router();
 
 router.post('/create',validateUserCreation,handleValidationErrors, employerController.createEmployer);
+router.post('/login', employerController.signInEmployer);
+router.post('/google-login', employerController.googleSignInEmployer);
+
 
 export default router;

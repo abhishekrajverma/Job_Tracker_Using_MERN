@@ -27,7 +27,7 @@ const createEmployer = async (req, res, next) => {
 };
 
 // sign-in controller
-const signIn = async (req, res) => {
+const signInEmployer = async (req, res) => {
     const { email, password } = req.body;
     try {
         const existingEmployer = await Employer.findOne({ email });
@@ -51,7 +51,7 @@ const signIn = async (req, res) => {
 };
 
 //google sign-in controller
-const googleSignIn = async (req, res) => {
+const googleSignInEmployer = async (req, res, next) => {
     try {
         const user = await Employer.findOne({ email: req.body.email });
         if (user) {
@@ -64,7 +64,7 @@ const googleSignIn = async (req, res) => {
         } else {
             const genratedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
             const hashedPassword = bcrypt.hashSync(genratedPassword, 10);
-            const newUser = await User.create({
+            const newUser = await Employer.create({
                 name: req.body.name.split(' ').join('').toLowerCase() + Math.random().toString(36).slice(-4),
                 email: req.body.email,
                 password: hashedPassword,
@@ -83,4 +83,4 @@ const googleSignIn = async (req, res) => {
 }
 
 
-export default { createEmployer, signIn, googleSignIn};
+export default { createEmployer, signInEmployer, googleSignInEmployer};

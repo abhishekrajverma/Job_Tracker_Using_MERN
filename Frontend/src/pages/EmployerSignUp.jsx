@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import OAuth from '../components/OAuth'
+import OAuthEmployer from "../components/OAuthEmployer.jsx";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
 export default function EmployerSignup() {
@@ -39,7 +39,7 @@ export default function EmployerSignup() {
         try {
             setLoading(true);
             const response = await axios.post(
-                "/api/auth/creating",
+                "/api/employers/create",
                 {
                     name: formData.name,
                     email: formData.email,
@@ -132,7 +132,7 @@ export default function EmployerSignup() {
                     >
                         {loading ? <span className="loading loading-ball loading-xs"></span> : "Sign Up"}
                     </button>
-                    <OAuth />
+                     <OAuthEmployer /> {/*added OAuthEmployer component to the form  */}
                 </form>
                 <div className="flex gap-2 mt-5">
                     <p>Have an account?</p>

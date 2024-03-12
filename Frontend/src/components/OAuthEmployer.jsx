@@ -15,10 +15,9 @@ export default function OAuth() {
 
             // pop-up
             const result = await signInWithPopup(auth, provider)
-            // console.log(result); // log the result to see what is returned from google 
 
             // send data to backend
-            const res = await fetch('/api/auth/google', {
+            const res = await fetch('/api/employers/google-login', {
                 method: 'POST',
                 body: JSON.stringify({ 
                     name: result.user.displayName, 
@@ -31,7 +30,7 @@ export default function OAuth() {
             })
             const data = await res.json()
             dispatch(signInSuccess(data))
-            navigate('/')
+            navigate('/job-listing')
 
         } catch (err) {
             console.log("Could not sign-in with google", err)

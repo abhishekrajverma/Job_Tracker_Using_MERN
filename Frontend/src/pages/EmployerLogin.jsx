@@ -8,7 +8,7 @@ import {
     signInSuccess,
     signInFailure,
 } from '../Redux/user/userSlice.js'
-import OAuth from "../components/OAuth.jsx";
+import OAuthEmployer from "../components/OAuthEmployer.jsx";
 
 function EmployerLogin() {
     const [formData, setFormData] = useState({});
@@ -30,7 +30,7 @@ function EmployerLogin() {
         try {
             dispatch(signInStart())
             const response = await axios.post(
-                "/api/auth/sign-in",
+                "/api/employers/login",
                 {
                     email: formData.email,
                     password: formData.password,
@@ -105,7 +105,7 @@ function EmployerLogin() {
                                 {loading ? <span className="loading loading-spinner loading-md"></span> : "Sign In"}
                             </button>
                             <div className="divider">OR</div>
-                            <OAuth />
+                            <OAuthEmployer />  {/* added OAuthEmployer component to the form  */}
                         </form>
                         
                     </div>
