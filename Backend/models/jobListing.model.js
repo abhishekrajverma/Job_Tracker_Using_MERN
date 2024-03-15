@@ -23,10 +23,6 @@ const jobListingSchema = new Schema({
         type: String, // company is a string
         required: true, // company is required
     },
-    companyLogo: {
-        type: String, // companyLogo is a string
-        required: true, // companyLogo is required
-    },
     jobType: {
         type: String, // jobType is a string
         required: true, // jobType is required
@@ -36,12 +32,8 @@ const jobListingSchema = new Schema({
         required: true, // experience is required
     },
     skills: {
-        type: [String], // skills is an array of strings
+        type: String, // skills is an array of strings
         required: true, // skills is required
-    },
-    postedBy: {
-        type: String, // postedBy is an ObjectId
-        required: true, // postedBy is required
     },
 }, {
     timestamps: true // add timestamps to the schema

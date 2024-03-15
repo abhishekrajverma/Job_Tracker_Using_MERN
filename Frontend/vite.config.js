@@ -7,10 +7,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
-        target: 'http://localhost:8080', // Your Express server address
+      "/api": {
+        target: "http://localhost:8080", // Your Express server address
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },

@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: "mern-job-tracker.firebaseapp.com",
-    projectId: "mern-job-tracker",
-    storageBucket: "mern-job-tracker.appspot.com",
-    messagingSenderId: "954981350725",
-    appId: "1:954981350725:web:b9a64a8b65349cc168122c"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: "mern-job-tracker.firebaseapp.com",
+  projectId: "mern-job-tracker",
+  storageBucket: "mern-job-tracker.appspot.com",
+  messagingSenderId: "954981350725",
+  appId: "1:954981350725:web:b9a64a8b65349cc168122c",
 };
 
 // Initialize Firebase
