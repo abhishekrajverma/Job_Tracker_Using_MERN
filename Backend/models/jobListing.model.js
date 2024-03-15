@@ -35,6 +35,10 @@ const jobListingSchema = new Schema({
         type: String, // skills is an array of strings
         required: true, // skills is required
     },
+    userRef: {
+        type: String,
+        required: true,
+    },
 }, {
     timestamps: true // add timestamps to the schema
 });

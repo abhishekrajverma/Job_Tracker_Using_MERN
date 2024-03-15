@@ -1,7 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from 'bcrypt';
 import { errorHandler } from '../utils/error.js'; // error handling middleware for handling errors in the application 
-
+import JobListing from "../models/jobListing.model.js";
 // update user information in the database
 const updateUser = async (req, res, next) => {
     if (req.user.id !== req.params.id) //if the user id in the token does not match the user id in the request parameter 
@@ -18,7 +18,7 @@ const updateUser = async (req, res, next) => {
                     name: req.body.name, // update name
                     email: req.body.email, // update email
                     password: req.body.password, // update password
-                    avatar: req.body.avatar || req.body.photo , // if avatar is not provided, use photo as avatar
+                    avatar: req.body.avatar || req.body.photo, // if avatar is not provided, use photo as avatar
                 },
             },
             { new: true }
@@ -45,7 +45,20 @@ const deleteUser = async (req, res, next) => {
     }
 }
 
+const getUserListings = async (req, res, next) => {
+    if (req.user.id === req.params.id) {
+        try {
+            const listings = await JobListing.find({ userRef: req.params.id });
+            res.status(200).json(listings);
+        } catch (error) {
+            next(error);
+        }
+    } else {
+        return next(errorHandler(401, 'You can only view your own listings!'));
+    }
+};
+
 // export the controllers
 
-export default { updateUser, deleteUser };
+export default { updateUser, deleteUser, getUserListings };
 
