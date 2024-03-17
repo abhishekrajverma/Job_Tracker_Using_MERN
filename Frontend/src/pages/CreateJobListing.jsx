@@ -1,8 +1,8 @@
-import Header from "../components/header";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { UseSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import EmployerHeader from "../components/EmployerHeader";
 
 function JobListing() {
   const { currentUser } = useSelector((state) => state.user);
@@ -16,11 +16,11 @@ function JobListing() {
   const [salary, setSalary] = useState("");
   const [location, setLocation] = useState("");
   const [experience, setExperience] = useState("");
+  const [userRef, setUserRef] = useState(currentUser && currentUser.employer && currentUser.employer._id ? currentUser.employer._id : currentUser.user._id); // get userRef from the redux store 
   const [jobCreatingSuccess, setJobCreatingSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post(
         "/api/job/listing/create",
@@ -33,7 +33,7 @@ function JobListing() {
           salary,
           location,
           experience,
-          userRef: currentUser._id,
+          userRef, // pass userRef to the backend
         },
         {
           headers: {
@@ -41,22 +41,30 @@ function JobListing() {
           },
         }
       );
-      if (response.status.success === false) {
-        setError(response.data.message);
+      // If job is created successfully then set jobCreatingSuccess to true and setError to null
+      if (response.status === 201) {
+        setJobCreatingSuccess(true);
+        setError(null);
+        // Reset jobCreatingSuccess after 2 seconds
+        setTimeout(() => {
+          setJobCreatingSuccess(false);
+        }, 2000);
         return;
       }
-      setJobCreatingSuccess(true);
-      setError(null);
     } catch (err) {
       if (err.response) {
         setError(err.response.data.message);
+        // Reset error massage after 2 seconds if there is an error in creating job listing 
+        setTimeout(() => {
+          setError(false);
+        }, 3000);
         return;
       }
     }
   };
   return (
     <div>
-      <Header />
+      <EmployerHeader />
       <main className="p-3 max-w-4xl mx-auto">
         <h1 className="text-3xl text-center font-semibold my-7">
           Create a Listing

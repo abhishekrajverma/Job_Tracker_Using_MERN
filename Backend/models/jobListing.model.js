@@ -39,6 +39,10 @@ const jobListingSchema = new Schema({
         type: String,
         required: true,
     },
+    jobPostedOn: {
+        type: Date,
+        default: Date.now,
+    },
 }, {
     timestamps: true // add timestamps to the schema
 });

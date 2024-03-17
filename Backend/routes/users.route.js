@@ -8,7 +8,6 @@ import verifyUser from '../utils/VerifyUser.js';
 // routes for user operations 
 router.post('/update/:id', verifyUser, userController.updateUser);
 router.delete('/delete/:id', verifyUser, userController.deleteUser); // delete user route 
-router.get('/listings/:id', verifyUser, userController.getUserListings); // get user listings route
 
 //exporting router to use it in server.js
 export default router;

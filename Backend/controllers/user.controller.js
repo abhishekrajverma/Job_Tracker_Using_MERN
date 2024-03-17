@@ -1,7 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from 'bcrypt';
 import { errorHandler } from '../utils/error.js'; // error handling middleware for handling errors in the application 
-import JobListing from "../models/jobListing.model.js";
+
 // update user information in the database
 const updateUser = async (req, res, next) => {
     if (req.user.id !== req.params.id) //if the user id in the token does not match the user id in the request parameter 
@@ -35,7 +35,7 @@ const updateUser = async (req, res, next) => {
 // delete user account in the database 
 const deleteUser = async (req, res, next) => {
     if (req.user.id !== req.params.id) //if the user id in the token does not match the user id in the request parameter 
-        return next(errorHandler(401, 'You can only delete your own account!'));
+        res.status(401).json({ message: "You can only delete your own account!" }); // return error message if user id does not match
     try {
         await User.findByIdAndDelete(req.params.id);
         res.clearCookie('access_token'); // clear the token cookie 
@@ -45,20 +45,9 @@ const deleteUser = async (req, res, next) => {
     }
 }
 
-const getUserListings = async (req, res, next) => {
-    if (req.user.id === req.params.id) {
-        try {
-            const listings = await JobListing.find({ userRef: req.params.id });
-            res.status(200).json(listings);
-        } catch (error) {
-            next(error);
-        }
-    } else {
-        return next(errorHandler(401, 'You can only view your own listings!'));
-    }
-};
+
 
 // export the controllers
 
-export default { updateUser, deleteUser, getUserListings };
+export default { updateUser, deleteUser };
 

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit"; // createSlice is used to create a slice of the redux store 
 
 const initialState = {
   currentUser: null,

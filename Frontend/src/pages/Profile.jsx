@@ -93,6 +93,10 @@ export default function Profile() {
       }
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
+      // remove success message after 2 seconds of showing it to the user using setTimeout function  
+      setTimeout(() => {
+        setUpdateSuccess(false);
+      }, 2000);
     } catch (error) {
       dispatch(updateUserFailure(error.message));
     }

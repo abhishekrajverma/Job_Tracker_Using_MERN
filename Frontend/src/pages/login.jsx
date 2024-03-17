@@ -42,9 +42,9 @@ export default function SignIn() {
         },
       );
       // Successful sign up, handle the result accordingly
-      if (response.status.success === 200) {
+      if (response.status === 200) {
         dispatch(signInSuccess(response.data));
-        navigate("/");
+        navigate("/"); // redirect to home page
       }
     } catch (err) {
       if (err.response) {

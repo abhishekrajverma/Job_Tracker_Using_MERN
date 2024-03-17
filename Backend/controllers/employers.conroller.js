@@ -1,6 +1,7 @@
 import Employer from "../models/employers.model.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import JobListing from "../models/jobListing.model.js";
 
 
 // create a new employer account
@@ -41,7 +42,7 @@ const signInEmployer = async (req, res) => {
         const token = jwt.sign({ id: existingEmployer._id }, process.env.JWT_SECRET);
         // remove password from employer object
         const { password: employerPassword, ...employerWithoutPassword } = existingEmployer.toObject(); //toObject() converts mongoose document to js object
-        return res.cookie('access_token', token, { httpOnly: true, maxAge: 1024 * 60 * 60 * 24 * 3 })
+        return res.cookie('access_token_Employer', token, { httpOnly: true, maxAge: 1024 * 60 * 60 * 24 * 3 })
             .status(200).json({ message: "Sign in successful", employer: employerWithoutPassword });
     }
     catch (error) {
@@ -59,7 +60,7 @@ const googleSignInEmployer = async (req, res, next) => {
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
             // remove password from user object
             const { password: userPassword, ...userWithoutPassword } = user.toObject(); //toObject() converts mongoose document to js object
-            return res.cookie('access_token', token, { httpOnly: true, maxAge: 1024 * 60 * 60 * 24 * 3 })
+            return res.cookie('access_token_Employer', token, { httpOnly: true, maxAge: 1024 * 60 * 60 * 24 * 3 })
                 .status(200).json({ message: "Sign in successful", user: userWithoutPassword });
         } else {
             const genratedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
@@ -73,7 +74,7 @@ const googleSignInEmployer = async (req, res, next) => {
             const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
             // remove password from user object
             const { password: userPassword, ...userWithoutPassword } = newUser.toObject(); //toObject() converts mongoose document to js object
-            return res.cookie('access_token', token, { httpOnly: true, maxAge: 1024 * 60 * 60 * 24 * 3 })
+            return res.cookie('access_token_Employer', token, { httpOnly: true, maxAge: 1024 * 60 * 60 * 24 * 3 })
                 .status(200).json({ message: "Sign in successful", user: userWithoutPassword });
         }
     }
@@ -82,5 +83,28 @@ const googleSignInEmployer = async (req, res, next) => {
     }
 }
 
+const getUserListings = async (req, res, next) => {
+    if (req.user.id === req.params.id) {
+        try {
+            const listings = await JobListing.find({ userRef: req.params.id });
+            res.status(200).json(listings);
+        } catch (error) {
+            next(error);
+        }
+    } else {
+        res.status(401).json({ message: "You can only view your own listings" });
+    }
+};
 
-export default { createEmployer, signInEmployer, googleSignInEmployer};
+//sign out controller
+const signOutEmployer = (req, res, next) => {
+    try{
+        res.clearCookie('access_token_Employer');
+        res.status(200).json({ message: "Sign out successful" });
+    }
+    catch(error){
+        next(error);
+    }
+};
+
+export default { createEmployer, signInEmployer, googleSignInEmployer, getUserListings, signOutEmployer};
