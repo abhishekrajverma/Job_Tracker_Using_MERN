@@ -10,7 +10,7 @@ function ShowJobListings() {
     const handleShowJobListings = async () => {
         try {
             const response = await axios.get(
-                `/api/employers/listings/${currentUser.user._id}`
+                `/api/employers/listings/${ currentUser && currentUser.employer && currentUser.employer._id ? currentUser.employer._id : currentUser.user._id}`
             );
             setJobListings(response.data);
         } catch (err) {
@@ -20,35 +20,21 @@ function ShowJobListings() {
 
     return (
         <div>
-            {jobListings && jobListings.length > 0 && (
-                <div className="flex flex-col gap-4">
-                    <h1 className="text-center mt-7 text-2xl font-semibold">
-                        Your Listings
-                    </h1>
-                    {jobListings.map((job) => (
-                        <div
-                            key={job._id}
-                            className="border rounded-lg p-3 flex justify-between items-center gap-4"
-                        >
-                            
-                                <p>{listing.name}</p>
-                            
-
-                            <div className="flex flex-col item-center">
-                                <button
-                                    onClick={() => handleListingDelete(listing._id)}
-                                    className="text-red-700 uppercase"
-                                >
-                                    Delete
-                                </button>
-                                <Link to={`/update-listing/${listing._id}`}>
-                                    <button className="text-green-700 uppercase">Edit</button>
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+            <button onClick={handleShowJobListings}>Show Job Listings</button>
+            {jobListings.map((job) => {
+                return (
+                    <div key={job._id}>
+                        <h1>{job.title}</h1>
+                        <h2>{job.company}</h2>
+                        <h3>{job.jobType}</h3>
+                        <p>{job.description}</p>
+                        <p>{job.skills}</p>
+                        <p>{job.salary}</p>
+                        <p>{job.location}</p>
+                        <p>{job.experience}</p>
+                    </div>
+                );
+            })}
         </div>
     );
 }

@@ -20,7 +20,7 @@ function JobListing() {
   const [jobCreatingSuccess, setJobCreatingSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default form submission behavior 
     try {
       const response = await axios.post(
         "/api/job/listing/create",
