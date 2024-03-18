@@ -30,5 +30,28 @@ const deleteJobListing = async (req, res, next) => {
     }
 }
 
+// update job listing
+const updateJobListing = async (req, res, next) => {
+    const listing = await JobListing.findById(req.params.id);
+
+    if (!listing) {
+        res.status(404).json({ message: "Listing not found" });
+    }
+
+    if (req.user.id !== listing.userRef) {
+        res.status(401).json({ message: "You can only update your own listings" }); 
+    }
+
+    try {
+        const updatedJobListing = await JobListing.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.status(200).json({ message: "Listing has been updated" , updatedJobListing });
+    } catch (error) {
+        next(error);
+    }
+}
+
+
+
+
 // export the controllers
-export default { createJobListing, deleteJobListing }; 
+export default { createJobListing, deleteJobListing, updateJobListing}; 

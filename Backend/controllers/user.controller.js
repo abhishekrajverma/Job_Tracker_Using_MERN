@@ -14,7 +14,7 @@ const updateUser = async (req, res, next) => {
         const updatedUser = await User.findByIdAndUpdate(
             req.params.id,
             {
-                $set: {
+                $set: { // here set is used to update the user information 
                     name: req.body.name, // update name
                     email: req.body.email, // update email
                     password: req.body.password, // update password
@@ -24,7 +24,7 @@ const updateUser = async (req, res, next) => {
             { new: true }
         )
 
-        // remove password from user object 
+        // remove password from user object before sending it to the client
         const { password, ...user } = updatedUser.toObject(); //toObject() converts mongoose document to js object 
         res.status(200).json({ message: "Account has been updated", user });
     } catch (error) {
