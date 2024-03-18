@@ -187,13 +187,23 @@ export default function Header() {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 rounded-full">
-                <img
-                  src={currentUser.user.avatar}
-                  alt="Profile"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
+              {currentUser &&
+              currentUser.employer &&
+              currentUser.employer.avatar ? (
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={currentUser.employer.avatar}
+                  />
+                </div>
+              ) : (
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={currentUser.user.avatar}
+                  />
+                </div>
+              )}
             </div>
             {openProfile && ( // if openProfile is true then show the dropdown menu
               <ul
