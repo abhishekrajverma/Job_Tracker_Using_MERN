@@ -70,12 +70,11 @@ function ShowJobListings() {
                                 >
                                     Delete
                                 </button>
-                                <Link to={`/update-listing/${listing._id}`}>
+                                <Link to={`/employer/update/listings/${listing._id}`}>
                                     <button className='btn btn-success uppercase'>Edit</button>
                                 </Link>
                             </div>
                         </div>
-
                     ))}
                 </div>
             )}

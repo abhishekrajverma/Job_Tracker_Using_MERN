@@ -4,7 +4,7 @@ import Home from "./pages/Home/Home";
 import Signup from "./pages/SignUp";
 import Login from "./pages/Login";
 import About from "./pages/About";
-import { ListingPrivateRoute,  PrivateRoute } from "./components/PrivateRoute.jsx";
+import { ListingPrivateRoute, PrivateRoute } from "./components/PrivateRoute.jsx";
 import Profile from "./pages/Profile";
 import Demo from "./pages/demo";
 import ContactInformation from "./pages/Contact";
@@ -12,6 +12,7 @@ import EmployerLogin from "./pages/EmployerLogin";
 import JobListing from "./pages/CreateJobListing";
 import EmployerSignup from "./pages/EmployerSignUp";
 import ShowJobListings from "./pages/ShowJobListings";
+import UpdateJobListings from "./pages/UpdateJobListings.jsx";
 
 
 
@@ -31,10 +32,11 @@ function App() {
         </Route>
         <Route path="/contact" element={<ContactInformation />} />
         <Route path="/employer-login" element={<EmployerLogin />} />
-        <Route path="/job-listing" element={<JobListing />} />
         <Route path="/employer-sign-up" element={<EmployerSignup />} />
         <Route element={<ListingPrivateRoute />}>
+          <Route path="/job-listing" element={<JobListing />} />
           <Route path="/employer-job-listings" element={<ShowJobListings />} />
+          <Route path="/employer/update/listings/:listingId" element={<UpdateJobListings />} />
         </Route>
       </Routes>
     </BrowserRouter>

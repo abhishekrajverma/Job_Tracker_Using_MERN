@@ -74,7 +74,7 @@ export default function Profile() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
-  // handle form submit
+  // handle update user profile form submit and update user profile in the database using fetch api and redux actions and reducers to update user profile in the redux store and show success message to the user 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

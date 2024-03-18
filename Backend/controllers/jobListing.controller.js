@@ -50,8 +50,20 @@ const updateJobListing = async (req, res, next) => {
     }
 }
 
+// get job listing
+const getJobListing = async (req, res, next) => {
+    try {
+        const jobListing = await JobListing.findById(req.params.id);
+        if (!jobListing) {
+            res.status(404).json({ message: "Listing not found" });
+        }
+        res.status(200).json(jobListing);
+    } catch (error) {
+        next(error);
+    }
+}
 
 
 
 // export the controllers
-export default { createJobListing, deleteJobListing, updateJobListing}; 
+export default { createJobListing, deleteJobListing, updateJobListing, getJobListing}; 
