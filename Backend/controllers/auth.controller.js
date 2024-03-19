@@ -1,8 +1,6 @@
-//const User = require("../models/user.model.js");
 import User from "../models/user.model.js";
 import bcrypt from 'bcrypt';    //importing bcrypt module
 import jwt from 'jsonwebtoken';    //importing jsonwebtoken module
-import { errorHandler } from '../utils/error.js'; // error handling middleware for handling errors in the application 
 
 const create = async (req, res, next) => {
     try {

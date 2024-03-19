@@ -1,6 +1,5 @@
 import JobListing from "../models/jobListing.model.js";
 
-
 const createJobListing = async (req, res, next) => {
     try {
         const newJobListing = await JobListing.create(req.body);
@@ -63,7 +62,17 @@ const getJobListing = async (req, res, next) => {
     }
 }
 
+// get all job listings
+const getAllJobListings = async (req, res, next) => {
+    try {
+        const jobListings = await JobListing.find();
+        res.status(200).json(jobListings);
+    } catch (error) {
+        next(error);
+    }
+}
+
 
 
 // export the controllers
-export default { createJobListing, deleteJobListing, updateJobListing, getJobListing}; 
+export default { createJobListing, deleteJobListing, updateJobListing, getJobListing, getAllJobListings}; 

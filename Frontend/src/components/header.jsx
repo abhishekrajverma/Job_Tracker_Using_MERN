@@ -6,13 +6,14 @@ import {
   signOutUserStart,
   signOutUserSuccess,
 } from "../Redux/user/userSlice.js"; // import sign out user actions from userSlice
-import { useNavigate } from "react-router-dom";
+import { useNavigate, } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
-import { IoIosSettings } from "react-icons/io";
 import { FiPhoneCall } from "react-icons/fi";
+import { BiSolidShow } from "react-icons/bi";
 import { IoMdLogOut } from "react-icons/io";
 
 export default function Header() {
+  const id = '65f9ee29cfb7fb56208029bf';
   const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch(); // dispatch function from react-redux
   const navigate = useNavigate(); // navigate function from react-router-dom
@@ -36,6 +37,16 @@ export default function Header() {
   };
   const handleHome = () => {
     navigate("/");
+  };
+
+  // handle show listings
+  const handleShowListings = () => {
+    navigate("/job/available");
+  };
+
+  // handle show application
+  const handleShowApplication = () => {
+    navigate(`/my-application/${id}`);
   };
 
   return (
@@ -100,28 +111,18 @@ export default function Header() {
             </ul>
           )}
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">jobHunter</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Item 1</a>
+            <a className="uppercase btn btn-active  m-2" onClick={handleHome}>Home</a>
           </li>
           <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
+            <a className="uppercase btn btn-active m-2" onClick={handleShowListings}>Available Jobs</a>
           </li>
           <li>
-            <a>Item 3</a>
+            <a className="uppercase btn btn-active m-2">Contact</a>
           </li>
         </ul>
       </div>
@@ -183,7 +184,7 @@ export default function Header() {
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
-              onClick={() => setOpenProfile((prev) => !prev)}
+              onClick={() => setOpenProfile((prev) => !prev)} // if the user tap on the avatar then open the profile dropdown menu and close the menu if it is open on mobile view 
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
@@ -199,7 +200,7 @@ export default function Header() {
               ) : (
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Tailwind CSS Navbar component"
+                    alt="user"
                     src={currentUser.user.avatar}
                   />
                 </div>
@@ -218,9 +219,9 @@ export default function Header() {
                   </a>
                 </li>
                 <li>
-                  <a>
-                    <IoIosSettings />
-                    Settings
+                  <a onClick={handleShowApplication}>
+                    <BiSolidShow />
+                    Show Applications
                   </a>
                 </li>
                 <li>

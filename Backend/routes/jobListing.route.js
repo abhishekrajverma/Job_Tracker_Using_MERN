@@ -10,6 +10,6 @@ router.post('/create',validateJobListing, handleValidationErrors, jobListingCont
 router.delete('/delete/:id', verifyEmployer,jobListingController.deleteJobListing);    // delete job listing route
 router.post('/update/:id', verifyEmployer,jobListingController.updateJobListing);    // update job listing route
 router.get('/get/:id', jobListingController.getJobListing);    // get job listing route
-
+router.get('/get-all', jobListingController.getAllJobListings);    // get all job listings route
 export default router;
 
