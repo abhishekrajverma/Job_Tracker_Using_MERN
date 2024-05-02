@@ -6,13 +6,13 @@ const HeroSection = () => {
   const details = [
     {
       id: 1,
-      title: "1,23,441",
+      title: "2",
       subTitle: "Live Job",
       icon: <FaSuitcase />,
     },
     {
       id: 2,
-      title: "91220",
+      title: "10",
       subTitle: "Companies",
       icon: <FaBuilding />,
     },
@@ -52,8 +52,6 @@ const HeroSection = () => {
               <div className="card" key={element.id}>
                 <div className="icon">{element.icon}</div>
                 <div className="content">
-                  <p>{element.title}</p>
-                  <p>{element.subTitle}</p>
                 </div>
               </div>
             );

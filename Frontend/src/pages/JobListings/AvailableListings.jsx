@@ -22,11 +22,6 @@ function AvailableListings() {
         fetchJobListings();
     }, []);
 
-    // handle apply now
-    const handleApplyNow = async () => {
-        Navigate('/application');
-    }
-
     return (
         <div>
             <Header />

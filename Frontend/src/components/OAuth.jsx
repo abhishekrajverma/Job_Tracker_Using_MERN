@@ -15,7 +15,7 @@ export default function OAuth() {
 
       // pop-up
       const result = await signInWithPopup(auth, provider);
-      // console.log(result); // log the result to see what is returned from google
+       console.log(result); // log the result to see what is returned from google
 
       // send data to backend
       const res = await fetch("/api/auth/google", {

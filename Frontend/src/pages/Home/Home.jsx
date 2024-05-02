@@ -10,7 +10,6 @@ export default function home() {
       <Header />
       <HeroSection />
       <HowItWorks />
-      <PopularCategories />
       <Footer />
     </div>
   );

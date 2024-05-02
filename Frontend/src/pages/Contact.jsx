@@ -11,16 +11,16 @@ function ContactInformation() {
           </h2>
           <ul className="text-lg">
             <li className="mb-2">
-              <strong>Name:</strong> John Doe
+              <strong>Name:</strong> Abhishek Kumar
             </li>
             <li className="mb-2">
-              <strong>Email:</strong> johndoe@example.com
+              <strong>Email:</strong> kua77663@gmail.com
             </li>
             <li className="mb-2">
-              <strong>Phone:</strong> +1234567890
+              <strong>Phone:</strong> +91-7369071679
             </li>
             <li className="mb-2">
-              <strong>Address:</strong> 123 Main Street, City, Country
+              <strong>Address:</strong> Mardapur Siwan Bihar 
             </li>
           </ul>
         </div>

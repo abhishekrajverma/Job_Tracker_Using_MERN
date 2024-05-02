@@ -36,7 +36,6 @@ function MyApplication() {
                       <p>Email: {application.email}</p>
                       <p>Phone: {application.phone}</p>
                       <button className="btn btn-error">Delete</button>
-                      
                     </div>
                   ))}
                 </div>
