@@ -5,7 +5,7 @@ import db from "./config/mongoose.js";
 import routes from "./routes/index.js";
 import path from "path";
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 
 const __dirname = path.resolve(); // get the current directory path of the file where this line is written (server.js) and store it in __dirname variable for later use in the code below (for serving static files) 
 // Initialize express app
