@@ -1,7 +1,7 @@
 // Import necessary components and modules
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Signup from "./pages/SignUp";
+import Signup from "./pages/SignUp.jsx";
 import Login from "./pages/Login";
 import About from "./pages/About";
 import { ListingPrivateRoute, PrivateRoute } from "./components/PrivateRoute.jsx";
