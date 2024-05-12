@@ -3,8 +3,12 @@ import bodyParserMiddleware from "./middleware/bodyParserMiddleware.js";
 import cookieParserMiddleware from "./middleware/cookieParserMiddleware.js";
 import db from "./config/mongoose.js";
 import routes from "./routes/index.js";
+import path from "path";
 
 const port = process.env.PORT;
+
+const __dirname = path.resolve(); // get the current directory path of the file where this line is written (server.js) and store it in __dirname variable for later use in the code below (for serving static files) 
+// Initialize express app
 const app = Express();
 
 // Use middleware
@@ -15,6 +19,14 @@ cookieParserMiddleware(app);
 
 // Use express router
 app.use("/", routes);
+
+// Serve static files
+app.use(Express.static(path.join(__dirname, "/Frontend/dist")));
+
+// Serve index.html file for all routes except the ones defined above (API routes) 
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'Frontend', 'dist', 'index.html'));
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
