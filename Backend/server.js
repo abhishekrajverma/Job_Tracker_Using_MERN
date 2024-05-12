@@ -25,7 +25,7 @@ app.use(Express.static(path.join(__dirname, "/Frontend/dist")));
 
 // Serve index.html file for all routes except the ones defined above (API routes) 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, 'Frontend', 'dist', 'index.html'));
+    res.sendFile(path.join(__dirname, "/Frontend/dist/index.html"));
 });
 
 // Error handling middleware
