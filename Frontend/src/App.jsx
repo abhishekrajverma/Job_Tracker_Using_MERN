@@ -1,7 +1,6 @@
 // Import necessary components and modules
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import Signup from "./pages/SignUp.jsx";
 import Login from "./pages/Login";
 import About from "./pages/About";
 import { ListingPrivateRoute, PrivateRoute } from "./components/PrivateRoute.jsx";
@@ -23,7 +22,6 @@ function App() {
       {/* BrowserRouter is used to wrap the routes */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sign-up" element={<Signup />} />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/about" element={<About />} />
         <Route path="/job/details/:Id" element={<JobDetails />} />
